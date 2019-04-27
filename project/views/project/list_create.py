@@ -4,7 +4,7 @@ from project.models.project import Project
 from project.serializers.project import ProjectSerializer
 from common.pagination.small_result import SmallResultsSetPagination
 
-class ProjectView(ListCreateAPIView):
+class ProjectListCreateView(ListCreateAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
     permission_classes = (IsAuthenticated,)
