@@ -4,5 +4,5 @@ from .views.project.read_update_delete import ProjectReadUpdateDeleteView
 
 urlpatterns = [
     url(r'^el', ProjectListCreateView.as_view(), name='List Or Create Operation'),
-    url(r'^e/(?P<pk>\d+)', ProjectReadUpdateDeleteView.as_view(), name='RUD Operation'),
+    url(r'^e/(?P<pk>[0-9a-f-]+)', ProjectReadUpdateDeleteView.as_view(), name='RUD Operation'),
 ]
