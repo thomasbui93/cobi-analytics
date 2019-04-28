@@ -5,7 +5,10 @@ from project.serializers.project import ProjectSerializer
 from common.pagination.small_result import SmallResultsSetPagination
 
 class ProjectListCreateView(ListCreateAPIView):
-    queryset = Project.objects.all()
     serializer_class = ProjectSerializer
     permission_classes = (IsAuthenticated,)
     pagination_class = SmallResultsSetPagination
+
+    def get_queryset(self):
+        user = self.request.user
+        return Project.objects.filter(user = user)

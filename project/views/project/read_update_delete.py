@@ -7,3 +7,7 @@ class ProjectReadUpdateDeleteView(RetrieveUpdateDestroyAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
     permission_classes = (IsAuthenticated,)
+
+    def get_queryset(self):
+        user = self.request.user
+        return Project.objects.filter(user = user)
