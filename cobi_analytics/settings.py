@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'authentication.apps.AuthenticationConfig',
     'project.apps.ProjectConfig',
+    'analytics_schema.apps.AnalyticsSchemaConfig',
 ]
 
 MIDDLEWARE = [
