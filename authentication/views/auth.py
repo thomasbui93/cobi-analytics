@@ -1,11 +1,12 @@
-from authentication.serializers.user import UserSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+import json
 from django.http import JsonResponse
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
-import json
+from authentication.serializers.user import UserSerializer
 
 @api_view(['GET'])
 def get_me_action(request):
@@ -15,9 +16,14 @@ def get_me_action(request):
 
 @csrf_exempt
 def sign_in_action(request):
-    username = request.POST.get('username')
+    email = request.POST.get('email')
     password = request.POST.get('password')
-    user = authenticate(request, username=username, password=password)
+    requested_user = User.objects.get(email = email)
+
+    if (requested_user is None):
+        return JsonResponse({'message': 'User not found.'}, status=status.HTTP_401_UNAUTHORIZED)
+
+    user = authenticate(request, username=requested_user.username, password=password)
 
     if user is not None:
         login(request, user)
