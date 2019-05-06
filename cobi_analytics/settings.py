@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'authentication.apps.AuthenticationConfig',
     'project.apps.ProjectConfig',
     'analytics_schema.apps.AnalyticsSchemaConfig',
+    'analytics.apps.AnalyticsConfig',
 ]
 
 MIDDLEWARE = [
