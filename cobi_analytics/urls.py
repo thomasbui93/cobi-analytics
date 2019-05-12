@@ -22,4 +22,5 @@ urlpatterns = [
     path('auth/', include('authentication.urls')),
     path('v1/api/project/', include('project.urls')),
     path('v1/api/analytics-schema/', include('analytics_schema.urls')),
+    path('v1/analytics/', include('analytics.urls')),
 ]
